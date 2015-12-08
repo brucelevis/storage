@@ -1,0 +1,10 @@
+digraph G {  
+client
+proxy
+server
+client -> proxy [label="msgauth",color=brown,fontcolor=brown]
+proxy -> server [label="connectto",color=brown,fontcolor=brown]
+server -> proxy [label="send key",color=green,fontcolor=green]
+proxy -> server [label="send client ip"]
+proxy -> client [label="send key",color=green,fontcolor=green]
+}  
