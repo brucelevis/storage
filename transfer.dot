@@ -1,0 +1,21 @@
+digraph G {  
+	edge [fontname="Microsoft YaHei", fontsize=10, weight=1 ];  
+	subgraph G1
+	{
+		g1c [label="client"]
+		g1c2s [label="Buffer(cli2srv_)"]
+		g1s [label="server"]
+		g1c -> g1c2s [label="接收并置于缓冲区",color=brown, fontcolor=brown]
+		g1c2s -> g1s [label="立即write，直到write失败或者缓冲区空",color=red, fontcolor=red]
+		g1c2s -> g1c2s [label="失败后保留在缓冲区，并注册EV_WRITE",color=green, fontcolor=green]
+	}  
+	subgraph G2
+	{
+		g2s [label="server"]
+		g2s2c [label="Buffer(srv2cli_)"]
+		g2c [label="client"]
+		g2s -> g2s2c [label="接收并置于缓冲区",color=brown, fontcolor=brown]
+		g2s2c -> g2c [label="立即write，直到write失败或者缓冲区空",color=red, fontcolor=red]
+		g2s2c -> g2s2c [label="失败后保留在缓冲区，并注册EV_WRITE",color=green, fontcolor=green]
+	}  
+}
